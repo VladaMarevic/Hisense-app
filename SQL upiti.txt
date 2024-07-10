@@ -1,0 +1,43 @@
+-- 1. Upit treba da vrati sve naslove knjiga autora "J.K. Rowling" 
+--    koje su na zalihama bar u jednom skladistu
+-- 2. Sve naslove knjiga koje ima klijent "Beli Zec" u korpi
+--    za kupovinu i cena knjige je veca od 52.2 EUR
+-- 3. Sve knjige koje su kupljene vise od 11 puta
+
+
+--1. JOIN upit
+
+SELECT Book.Title, -- brisati Book.AuthorName
+FROM Author
+INNER JOIN Book
+ON Book.AuthorName = Author.Name
+INNER JOIN Wharehouse_Book
+ON Wharehouse_Book.BookISBN = Book.ISBN
+WHERE
+Author.Name = 'J.K. Rowling'
+AND 
+Wharehouse_Book.Count > 0;
+
+--2.
+SELECT Book.Title
+FROM Customer
+INNER JOIN ShoppingBasket
+ON Customer.Email = ShoppingBasket.CustomerEmail
+INNER JOIN ShoppingBasket_Book
+ON ShoppingBasket.ID = ShoppingBasket_Book.ShoppingBasketID
+INNER JOIN Book
+ON ShoppingBasket_Book = Book.ISBN
+WHERE Customer.Name = 'Beli Zec'
+AND Book.Price > 52.2;
+
+--3.
+SELECT Book.Title
+FROM Book
+INNER JOIN ShoppingBasket_Book
+ON ShoppingBasket_Book.BookISBN = Book.ISBN
+GROUP BY Book.Title
+WHERE SUM(ShoppingBasket_Book.Count) > 11;
+
+
+
+

@@ -1,0 +1,41 @@
+﻿@model Infrastructure.Entities.Product
+
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<h2>Izmeni proizovd </h2>
+
+<form asp-action="Edit" method="post" class="needs-validation" novalidate>
+    <div class="form-group mb-3">
+        <label asp-for="SifraProizvoda" class="form-label"></label>
+        <input asp-for="SifraProizvoda" class="form-control" readonly style="background-color: #e9ecef;" />
+        <span asp-validation-for="SifraProizvoda" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="ModelProizvoda" class="form-label"></label>
+        <input asp-for="ModelProizvoda" class="form-control" />
+        <span asp-validation-for="ModelProizvoda" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="SirinaUredjaja" class="form-label"></label>
+        <input asp-for="SirinaUredjaja" class="form-control" />
+        <span asp-validation-for="SirinaUredjaja" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="VisinaUredjaja" class="form-label"></label>
+        <input asp-for="VisinaUredjaja" class="form-control" />
+        <span asp-validation-for="VisinaUredjaja" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="DubinaUredjaja" class="form-label"></label>
+        <input asp-for="DubinaUredjaja" class="form-control" />
+        <span asp-validation-for="DubinaUredjaja" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
